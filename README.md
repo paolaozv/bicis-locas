@@ -1,13 +1,74 @@
 ## Loc@s por las bicis
-1. Descarga los archivos en la sección de Descarga, descomprime y colócalos en tu carpeta llamada **bicis-locas**   
-2. En la consola posiciónate en la carpeta **bicis-locas** e inicializa un repositorio en dicha carpeta
-3. Crea un repositorio que se llame **bicis-locas** en GITHUB, haz tu primer commit y sube los archivos al repositorio. 
-4. Abre el archivo **js/main.js** y completa la función **validateForm**, se deben hacer las siguientes validaciones en los campos:
-⋅⋅* Todos los campos son obligatorios, excepto los dos últimos. 
-..* Los campos nombre y apellido sólo deben permitir caracteres de la A-Z
-..* Para los campos nombre y apellido la primera letra debe ser mayúscula
-..* Validar que el campo email tenga un formato válido. Ej: name@domain.com
-..* El campo password debe tener al menos 6 caracteres
-..* El campo password no puede ser igual a "password" ó "123456" ó "098754"
-..* El valor seleccionado de bicis, debe ser una de las opciones presentadas
-4. Si algún campo presenta error debe informarse al usuario por medio de un alert.
+
+1. Primero se valida que se ingresen datos con el primer if, luego que la primera letra sea con mayúsculas tanto para nombre como para apellido.
+
+``` javascript
+
+var nombre = document.getElementById("name").value;
+var apellido = document.getElementById("lastname").value;
+
+if(nombre == null || nombre.length == 0 || /^\s+$/.test(nombre)) {
+    	alert("Campo obligatorio");
+   	}
+   	else {
+       var m = /^[a-zA-Z]*$/;
+       if(!nombre.search(m)) {
+            console.log("letra")
+            m = /[a-z]/g;
+        }    
+        if(!nombre.search(m)){
+                alert("La primera letra debe empezar con maýuscula")
+        }
+   	} 
+   	
+   	if(apellido == null || apellido.length == 0 || /^\s+$/.test(apellido)) {
+    	alert("Campo obligatorio");
+   	}
+   	else {
+       var n = /^[a-zA-Z]*$/;
+       if(!apellido.search(n)) {
+            console.log("letra")
+            n = /[a-z]/g;
+        }    
+        if(!apellido.search(n)){
+                alert("La primera letra debe empezar con maýuscula")
+        }
+   	} 
+   	
+   	```
+   	
+2. Luego se valida que el email ingresado sea válido.
+   	
+   	``` javascript
+   
+  var email = document.getElementById("input-email").value;
+   	
+   	if(!(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(email))) {
+		return alert("Ingresa tu email");
+	}
+	
+	```
+		
+3. Se valida que la contraseña ingresada sea mayor de 6 caracteres y que no sea la palabra password y los números 123456 y 098754
+		
+``` javascript
+
+var email = document.getElementById("input-email").value;
+
+else if( contrasena == null || contrasena.length <= 6 || contrasena == "password" || contrasena == 123456 || contrasena == 098754 || /^\s+$/.test(contrasena) ) {
+	return alert("Ingresa una contraseña válida");
+}
+	
+```
+
+4. Valida que se seleccione una lista válida
+
+``` javascript
+
+var lista = document.getElementsByClassName("form-control").value;
+
+else if( lista.selectedIndex == null || lista.selectedIndex == 0 ) { 
+    return alert("Elegir una opción de  la lista");
+}
+
+```
